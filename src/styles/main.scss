@@ -1,0 +1,14 @@
+body, html {
+  width: 70vw;
+  height: 100vh;
+  background-color: gray;
+  color: #fff;
+  box-sizing: border-box;
+  margin: 0 auto;
+  text-align: center;
+}
+
+div{
+  display: flex;
+  flex-direction: column;
+}
