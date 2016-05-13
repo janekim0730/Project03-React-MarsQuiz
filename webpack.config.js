@@ -15,10 +15,10 @@ module.exports = {
       watch:true,
       inline: true,
       host: '0.0.0.0',
-      port: '3001',
+      port: '3000',
       watchOptions: {
             aggregateTimeout: 300,
-            poll: true
+            poll: 2000
       }
     },
     module: {
@@ -34,7 +34,11 @@ module.exports = {
             {
                 test: /\.scss$/,
                 loaders: ['style', 'css', 'sass']
-            }
+            },
+              {
+                test: /\.(jpg|png)$/,
+                loader: "url-loader",
+            },
         ]
     },
     resolve: {

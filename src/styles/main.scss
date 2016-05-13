@@ -1,14 +1,36 @@
 body, html {
-  width: 70vw;
-  height: 100vh;
-  background-color: gray;
-  color: #fff;
   box-sizing: border-box;
   margin: 0 auto;
-  text-align: center;
+  color: #fff;
+  font-size: 16px;
+  overflow:hidden;
+  border: 1px solid red;
 }
 
-div{
+.sidebar{
+background: #5d5e5e;
+flex-basis: 20%;
+}
+
+// h1{
+//      color: #edf1f2;
+//      font-size:6.5rem;
+//   font-weight: 700;
+//   letter-spacing: -10px;
+//   margin: 0;
+//   position: absolute;
+//   text-transform: uppercase;
+//   // top: 100px;
+//   transform: translateX(-60px) rotate(-90deg);
+// }
+
+.container{
   display: flex;
-  flex-direction: column;
+  height: 100vh;
+}
+
+.content-area{
+  width: 100%;
+  background-image:url(../../images/planets.jpg);
+  background-size: cover;
 }
