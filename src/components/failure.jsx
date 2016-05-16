@@ -24,7 +24,7 @@ componentWillUnmount(){
 
   render(){
     return(
-      <div className="reject">
+      <div className="blink">
         <h2>Rejected!</h2>
       </div>
     )

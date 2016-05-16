@@ -71,7 +71,7 @@ componentDidUpdate(prevProps, PrevState){
            <div className="question-box">
              <div className="narrative">{this.state.questions[this.state.numbers].question}
              </div>
-           <form>
+           <form className="form-container">
              <input className="answer-box" ref="answers"></input>
              <button onClick={this._nextQuestions.bind(this)}>Submit</button>
            </form>

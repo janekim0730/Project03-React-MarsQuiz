@@ -4,7 +4,10 @@ export default class Accepted extends React.Component{
     render(){
       return(
         <div>
-          <h2>Accepted!</h2>
+          <div className="launch">
+            <i class="fa fa-space-shuttle" aria-hidden="true"></i>
+          </div>
+          <h2 className="blink">Accepted!</h2>
         </div>
       )
     }

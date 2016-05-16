@@ -9,6 +9,7 @@
 //     font-weight: normal;
 //     font-style: normal;
 // 	}
+@import "animation";
 
 *{
   box-sizing: border-box;
@@ -31,8 +32,10 @@ h1{
   transform: translateX(-45px) rotate(-90deg);
 }
 
+
 h2{
-  color: #98d22a;
+  color: #c5f4ed;
+  text-shadow: 1px 1px 2px #0c1715, 0px 0px 25px #0c3b32, 0px 0px 5px #06251f;
   font-size: 4rem;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -58,6 +61,7 @@ h2{
 }
 
 .shuttle-icon{
+  margin-top: 165px;
   background: linear-gradient(to right, #fd746c, #ff9068);
   background-color: red;
   display: flex;
@@ -70,8 +74,18 @@ h2{
   font-size: 4.5rem;
 }
 
+.launch{
+  animation: launch 5s linear;
+  bottom: 2000px;
+  color: #fff;
+  font-size: 20rem;
+  position: absolute;
+  transform: translate(30%, 50%) rotate(-90deg);
+  z-index: 100;
+}
+
 .fa-space-shuttle{
-  position: relative;
+  margin-right: -17px;
   text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb,
   0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1),
   0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3),
@@ -104,36 +118,56 @@ h2{
 }
 
 .question-box{
-background-color: red;
+background-color: rgba(36, 170, 170, 0.4);
 display: flex;
 align-items: center;
 justify-content: center;
 flex-wrap: wrap;
+padding: 20px;
+margin: 10px;
+border-radius: 5px;
+}
+
+.form-container{
+  max-width: 500px;
+  text-align: center;
 }
 
 .narrative{
-  background: green;
+  background: linear-gradient(to right, #fd746c, #ff9068);
+  border-radius: 5px;
   font-size: 1.5rem;
   line-height: 1.5;
-  padding: 2rem 2rem 6rem;
-  width: 70%;
+  padding: 2rem;
+  width: 80%;
+  text-align: center;
 }
 
 .answer-box{
-   border: 0;
-   border-bottom: 1px solid #aaa;
-   font-size: 1.5rem;
-   width: 100%;
-
- }
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 2px solid #fff;
+  width: 90%;
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
 
 button{
   cursor: pointer;
-  background-color: #eff1ef;
+  color:#fff;
+  background-color: rgb(10, 150, 134);
   box-shadow: 2px 2px 2px rgba(92, 88, 91, 0.8);
   font-size: 16px;
   text-transform: uppercase;
   font-weight: 700;
   padding: 20px 60px;
   border-radius: 5px;
+  margin: 20px;
+}
+
+button:active{
+  color: #1b7771;
+  background-color: #a6f2e5;
+  box-shadow: 2px 2px 2px #c1f7f4;
 }
