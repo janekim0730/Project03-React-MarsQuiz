@@ -25,7 +25,7 @@ componentWillUnmount(){
   render(){
     return(
       <div className="reject">
-        <p>Rejected!</p>
+        <h2>Rejected!</h2>
       </div>
     )
   }

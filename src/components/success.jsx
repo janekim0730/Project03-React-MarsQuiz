@@ -4,7 +4,7 @@ export default class Accepted extends React.Component{
     render(){
       return(
         <div>
-          <p>Accepted!</p>
+          <h2>Accepted!</h2>
         </div>
       )
     }
