@@ -12,7 +12,7 @@ componentDidMount(){
   this.timer = setInterval(() => {
     time++;
 
-    if(time === 3){
+    if(time === 4){
       this._nextPage();
     }
   }, 1000)
