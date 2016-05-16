@@ -64,8 +64,8 @@ componentDidUpdate(prevProps, PrevState){
 
   render(){
    return(
-   <div className="main">{this.state.numbers < 3 ?
-     <div className ="main-content">
+   <div className="content-area questions">{this.state.numbers < 3 ?
+     <div>
        <div className="timer-box"><Timer switchPage={this._nextFailure.bind(this)}/>
        </div>
            <div className="question-box">

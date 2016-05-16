@@ -24,7 +24,7 @@ componentWillUnmount(){
 
   render(){
     return(
-      <div className="blink">
+      <div className="content-area failure">
         <h2>Rejected!</h2>
       </div>
     )
