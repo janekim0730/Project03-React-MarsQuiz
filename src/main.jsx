@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 // //Components
 // import Welcome from './components/welcome.jsx';
 // import Timer from './components/timer.jsx';
+// import Evaluation './componenets/evaluation.jsx';
 // import Questions from './components/questions.jsx';
 // import Accepted from './components/success.jsx';
 // import Rejected from './components/failure.jsx';
@@ -81,30 +82,46 @@ _beginEval(){
 
  class Timer extends React.Component{
 
-   constructor(props){
-     super(props);
-     this.state = {secondsElapsed: 60};
-     this._tick = this._tick.bind(this);
+   constructor(){
+     super();
+     this.state = {seconds: 60};
    }
- _tick(){
-   this.setState({secondsElapsed:this.state.secondsElapsed -1 })
-   if (this.state.secondsElapsed === 0){
-     clearInterval(this.interval)
+
+   componentDidMount(){
+     this.setState({seconds: 60}) //when reload the page, reset the timer again
+     this.timer = setInterval(() => {
+       if(this.state.seconds > 0){
+       this.setState({seconds: this.state.seconds-1})
+       }
+     }, 1000)
+   }
+
+   _changeDisplay(){
+     let minutes = Math.floor(this.state.seconds/60) //Math.floor = no decimal places
+     let seconds = Math.floor(this.state.seconds%60) //only give remainder ex. 25 % 7 = 25 - (7*3) = 4
+     let countdown = minutes + ':' + seconds;
+     return countdown;
+   }
+
+   _failPage(){
+     this.props.switchPage('failure');
+   }
+
+   componentDidUpdate(prevProps, PrevState){
+     if(this.state.seconds === 0){
+       this._failPage(); //can directly be called because it is in the same class
+       clearInterval(this.timer);
      }
    }
 
- componentDidMount(){
-   this.interval = setInterval(this._tick, 1000);
-   }
-
- componenetWillUnmount(){
-   clearInterval(this.interval);
+   componenetWillUnmount(){
+     clearInterval(this.timer); //clear the time if the test is finished before the set time
    }
 
  render(){
    return(
      <div className="timer">
-      {this.state.secondsElapsed}
+      <p>{this._changeDisplay()}</p>
      </div>
      )
    }
@@ -173,14 +190,19 @@ _beginEval(){
 
    render(){
     return(
-    <div>{this.state.numbers < 3 ?
-      <div>
-        <Timer />
-      <div className="narrative">{this.state.questions[this.state.numbers].question}</div>
-      <form>
-      <input className="answerbox" ref="answers"></input>
-      <button onClick={this._nextQuestions.bind(this)}>Submit</button>
-      </form></div> : ''}
+    <div className="main">{this.state.numbers < 3 ?
+      <div className ="main-content">
+        <div className="timer-box"><Timer switchPage={this._nextFailure.bind(this)}/>
+        </div>
+            <div className="question-box">
+              <div className="narrative">{this.state.questions[this.state.numbers].question}
+              </div>
+            <form>
+              <input className="answer-box" ref="answers"></input>
+              <button onClick={this._nextQuestions.bind(this)}>Submit</button>
+            </form>
+            </div>
+      </div>: ''}
     </div>
    )
   }
@@ -190,7 +212,7 @@ _beginEval(){
    render(){
      return(
        <div>
-         <h1>Accepted!</h1>
+         <p>Accepted!</p>
        </div>
      )
    }
@@ -201,7 +223,7 @@ _beginEval(){
    render(){
      return(
        <div>
-         <h1>Rejected!</h1>
+         <p>Rejected!</p>
        </div>
      )
    }
