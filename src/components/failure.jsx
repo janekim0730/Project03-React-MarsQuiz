@@ -1,18 +1,32 @@
 import React from 'react';
-import {browserHistory} from 'react-router';
 
-export Rejected class Rejected extends React.Component{
+export default class Rejected extends React.Component{
+
+_nextPage(){
+  this.props.switchPage('welcome');
+}
 
 componentDidMount(){
-  setTimeout(){
-    browserHistory.push('/welcome')}, 10000);
-  }
+  let time = 0;
+
+  this.timer = setInterval(() => {
+    time++;
+
+    if(time === 3){
+      this._nextPage();
+    }
+  }, 1000)
 }
- render(){
-   return(
-     <div className="result-msg">
-       <h2 className="rejected">Rejected!</h2>
-     </div>
-   ;)
- }
+
+componentWillUnmount(){
+  clearInterval(this.timer);
+}
+
+  render(){
+    return(
+      <div className="reject">
+        <p>Rejected!</p>
+      </div>
+    )
+  }
 }

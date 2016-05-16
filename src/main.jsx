@@ -1,18 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import {Router, Route, browserHistory, Redirect from 'react-router'};
-//
-// //Components
-// import Welcome from './components/welcome.jsx';
-// import Timer from './components/timer.jsx';
-// import Evaluation './componenets/evaluation.jsx';
-// import Questions from './components/questions.jsx';
-// import Accepted from './components/success.jsx';
-// import Rejected from './components/failure.jsx';
+
+//import components
+import Welcome from './components/welcome';
+import Evaluation from './components/evaluation';
+import Accepted from './components/success';
+import Rejected from './components/failure';
+import Questions from './components/questions';
+
 
 require('./styles/reset.scss');
 require('./styles/main.scss');
-
 
 class MarsApp extends React.Component {
 
@@ -49,36 +47,6 @@ _renderPage(){
     );
   }
 }
-
-class Welcome extends React.Component {
-
-_nextPage(){
-  this.props.switchPage('evaluation');
-}
-
-   render(){
-     return(
-       <div>
-         <button onClick={this._nextPage.bind(this)}>Take Test</button>
-       </div>
-     )
-   }
- }
-
- class Evaluation extends React.Component{
-
-_beginEval(){
-  this.props.switchPage('questions');
-}
-
-   render(){
-     return(
-       <div>
-         <button onClick={this._beginEval.bind(this)}>Begin Evaluation</button>
-       </div>
-     )
-   }
- }
 
  class Timer extends React.Component{
 
@@ -127,106 +95,5 @@ _beginEval(){
    }
  }
 
- class Questions extends React.Component{
-   constructor(){
-     super();
-     this.state={
-        questions:[
-          {question: 'What color is the sailor Mars?', answer: 'red', result: false},
-          {question: 'What temperature is the Mars', answer: 'hot', result: false},
-          {question: 'How long is a year on Mars? ', answer: '120', result: false}
-        ],
-        numbers: 0
-     }
-   }
-
-   _nextSuccess(){
-     this.props.switchPage('success');
-   }
-
-   _nextFailure(){
-     this.props.switchPage('failure');
-   }
-
-   _checkResult(){
-     let correctAnswers = 0;
-     const countResult = this.state.questions.map((resultList) => {
-      if(resultList.result === true){
-        correctAnswers++;
-      }
-    });
-
-      if(correctAnswers > this.state.questions.length/2){
-        this._nextSuccess();
-      }else{
-        this._nextFailure();
-      }
- }
-
- componentDidUpdate(prevProps, PrevState){
-   if(this.state.numbers === this.state.questions.length){
-     this._checkResult();
-     this.setState({numbers:0})
-   }
- }
-
-   _nextQuestions(event){
-     event.preventDefault()
-
-     if(this.refs.answers.value === this.state.questions[this.state.numbers].answer){
-
-        const newQuestions = this.state.questions.map((questionnaire) => {
-          if(this.state.questions[this.state.numbers] === questionnaire){
-            questionnaire.result = true;
-          }
-        return questionnaire;
-        });
-     }
-
-     this.setState({numbers: this.state.numbers+1});
-     this.refs.answers.value = '';
-
-   }
-
-   render(){
-    return(
-    <div className="main">{this.state.numbers < 3 ?
-      <div className ="main-content">
-        <div className="timer-box"><Timer switchPage={this._nextFailure.bind(this)}/>
-        </div>
-            <div className="question-box">
-              <div className="narrative">{this.state.questions[this.state.numbers].question}
-              </div>
-            <form>
-              <input className="answer-box" ref="answers"></input>
-              <button onClick={this._nextQuestions.bind(this)}>Submit</button>
-            </form>
-            </div>
-      </div>: ''}
-    </div>
-   )
-  }
- }
-
- class Accepted extends React.Component{
-   render(){
-     return(
-       <div>
-         <p>Accepted!</p>
-       </div>
-     )
-   }
-
- }
-
- class Rejected extends React.Component{
-   render(){
-     return(
-       <div>
-         <p>Rejected!</p>
-       </div>
-     )
-   }
- }
 
 ReactDOM.render(<MarsApp />, document.getElementById('react-app'));
